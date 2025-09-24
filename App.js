@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import data from "./assets/restaurants.json";
 
@@ -7,13 +7,15 @@ import data from "./assets/restaurants.json";
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={data}
-        renderItem={({ item }) => <Text>{item.name}</Text>}
-        keyExtractor={(item) => item.placeId}
-      />
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={data}
+          renderItem={({ item }) => <Text>{item.name}</Text>}
+          keyExtractor={(item) => item.placeId}
+        />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
